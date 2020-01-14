@@ -8,7 +8,11 @@ body,html{
 }
 h1{
     margin: 2rem auto 2rem auto;
+    
 }
+
+
+
 
 .nav{
     background-color: #1b262c;
@@ -18,4 +22,10 @@ h1{
 li.nav-item{
     margin: 2rem auto 2rem auto;
     font-size: 1.5rem;
+}
+
+#firstOperand > h1,#operator >h1,#secondOperator >h1
+,#equals > h1,#result >h1{
+    width: 5rem;
+    display:  inline-block;
 }

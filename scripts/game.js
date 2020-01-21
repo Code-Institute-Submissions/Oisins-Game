@@ -4,10 +4,13 @@ var playersPattern = [];
 var level = 4;
 var chosenColor;
 
-var greenBtnPressed = document.getElementById("green").addEventListener("click",btnPressed);
-var redBtnPressed = document.getElementById("red").addEventListener("click",btnPressed);
-var yellowBtnPressed = document.getElementById("yellow").addEventListener("click",btnPressed);
-var blueBtnPressed = document.getElementById("blue").addEventListener("click",btnPressed);
+var isPlayersTurn = false;
+var gameOver = false;
+
+var greenBtnPressed = document.getElementById("green").addEventListener("click",greenBtnPressed);
+var redBtnPressed = document.getElementById("red").addEventListener("click",redBtnPressed);
+var yellowBtnPressed = document.getElementById("yellow").addEventListener("click",yellowBtnPressed);
+var blueBtnPressed = document.getElementById("blue").addEventListener("click",blueBtnPressed);
 
 function aiPlays() {
     for (var i = 0; i < level; i++) {
@@ -39,9 +42,61 @@ function anim(str, i) {
     }, 2000 * i);
 }
 
-function btnPressed(){
+function greenBtnPressed(){
+    playersPattern.push("green");
+    if(playersPattern.length < patternToPlay.length){
+        console.log("carry on");
+    }else if (playersPattern.length > patternToPlay.length){
+        console.log("stop game");
+    }else if(playersPattern.length==patternToPlay.length){
+        checkAiVsPlayer();
+    }
+}
+
+function redBtnPressed(){
+    playersPattern.push("red");
+     if(playersPattern.length < patternToPlay.length){
+        console.log("carry on");
+    }else if (playersPattern.length > patternToPlay.length){
+        console.log("stop game");
+    }else if(playersPattern.length==patternToPlay.length){
+        checkAiVsPlayer();
+    }
+
+}
+
+function yellowBtnPressed(){
+    playersPattern.push("yellow");
+     if(playersPattern.length < patternToPlay.length){
+        console.log("carry on");
+    }else if (playersPattern.length > patternToPlay.length){
+        console.log("stop game");
+    }else if(playersPattern.length==patternToPlay.length){
+        checkAiVsPlayer();
+    }
+}
+
+function blueBtnPressed(){
+    playersPattern.push("blue");
+    if(playersPattern.length < patternToPlay.length){
+        console.log("carry on");
+    }else if (playersPattern.length > patternToPlay.length){
+        console.log("stop game");
+    }else if(playersPattern.length==patternToPlay.length){
+        checkAiVsPlayer();
+    }
     
 }
+
+function checkAiVsPlayer(){
+    if(JSON.stringify(patternToPlay)===JSON.stringify(playersPattern)){
+        alert(true);
+    }else if(JSON.stringify(patternToPlay)!=JSON.stringify(playersPattern)){
+        alert(false);
+    }
+    
+}
+
 
 
 anim();

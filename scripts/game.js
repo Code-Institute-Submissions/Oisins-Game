@@ -2,6 +2,7 @@ var buttons = ["green", "red", "yellow", "blue"];
 var patternToPlay = [];
 var playersPattern = [];
 var level = 4;
+var playerScore = 0;
 var chosenColor;
 
 var isPlayersTurn = false;
@@ -106,12 +107,21 @@ function blueBtnPressed(){
 
 function checkAiVsPlayer(){
     if(JSON.stringify(patternToPlay)===JSON.stringify(playersPattern)){
-        alert("WINNER WINNER CHICKEN DINNER");
         level++;
+        playerScore++;
+        alert("WINNER WINNER CHICKEN DINNER" + playerScore);
+        updatePlayerScore(playerScore);
     }else if(JSON.stringify(patternToPlay)!=JSON.stringify(playersPattern)){
         alert("YOU LOST HA HA!");
     }
     
+}
+
+function updatePlayerScore(playerScore){
+   var score = playerScore.toString();
+   console.log(score);
+   document.getElementById('player').textContent = score;
+
 }
 
 

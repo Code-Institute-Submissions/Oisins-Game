@@ -42,7 +42,17 @@ function anim(str, i) {
     }, 2000 * i);
 }
 
+function playerAnim(str){
+    setTimeout(function () {
+        $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
+
+
+    }, 100);
+}
+
 function greenBtnPressed(){
+    var str = "#green";
+    playerAnim(str);
     playersPattern.push("green");
     if(playersPattern.length < patternToPlay.length){
         console.log("carry on");
@@ -54,6 +64,8 @@ function greenBtnPressed(){
 }
 
 function redBtnPressed(){
+    var str = "#red";
+    playerAnim(str);
     playersPattern.push("red");
      if(playersPattern.length < patternToPlay.length){
         console.log("carry on");
@@ -66,6 +78,8 @@ function redBtnPressed(){
 }
 
 function yellowBtnPressed(){
+    var str = "#yellow";
+    playerAnim(str);
     playersPattern.push("yellow");
      if(playersPattern.length < patternToPlay.length){
         console.log("carry on");
@@ -77,6 +91,8 @@ function yellowBtnPressed(){
 }
 
 function blueBtnPressed(){
+    var str = "#blue";
+    playerAnim(str);
     playersPattern.push("blue");
     if(playersPattern.length < patternToPlay.length){
         console.log("carry on");
@@ -90,14 +106,24 @@ function blueBtnPressed(){
 
 function checkAiVsPlayer(){
     if(JSON.stringify(patternToPlay)===JSON.stringify(playersPattern)){
-        alert(true);
+        alert("WINNER WINNER CHICKEN DINNER");
+        level++;
     }else if(JSON.stringify(patternToPlay)!=JSON.stringify(playersPattern)){
-        alert(false);
+        alert("YOU LOST HA HA!");
     }
     
+}
+
+
+function gameLoop(){
+    while(gameOver){
+        
+
+    }
 }
 
 
 
 anim();
 aiPlays();
+

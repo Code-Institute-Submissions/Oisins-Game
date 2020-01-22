@@ -112,10 +112,7 @@ function checkAiVsPlayer() {
         aiTurn = true;
         console.log("WINNER WINNER CHICKEN DINNER" + playerScore +level + patternToPlay.length);
         updatePlayerScore(playerScore);
-        for(var i = 0;i < patternToPlay.length;i++){
-           var popped = patternToPlay.pop();
-            console.log(popped);
-        }
+       
         aiPlays();
     } else if (JSON.stringify(patternToPlay) != JSON.stringify(playersPattern)) {
         gameOver = true;
@@ -132,9 +129,10 @@ function updatePlayerScore(playerScore) {
 }
 
 function playersTurn() {
-   playersTurn = true;
-   aiTurn = false;
-
+  if(playersTurn){
+      playersPattern = [];
+  }
+  aiPlays();
 
 }
 

@@ -6,31 +6,40 @@ var playerScore = 0;
 var chosenColor;
 
 var isPlayersTurn = false;
+var aiTurn = true;
 var gameOver = false;
 
-var greenBtnPressed = document.getElementById("green").addEventListener("click",greenBtnPressed);
-var redBtnPressed = document.getElementById("red").addEventListener("click",redBtnPressed);
-var yellowBtnPressed = document.getElementById("yellow").addEventListener("click",yellowBtnPressed);
-var blueBtnPressed = document.getElementById("blue").addEventListener("click",blueBtnPressed);
+var greenBtnPressed = document.getElementById("green").addEventListener("click", greenBtnPressed);
+var redBtnPressed = document.getElementById("red").addEventListener("click", redBtnPressed);
+var yellowBtnPressed = document.getElementById("yellow").addEventListener("click", yellowBtnPressed);
+var blueBtnPressed = document.getElementById("blue").addEventListener("click", blueBtnPressed);
+var playButton = document.getElementById("play").addEventListener("click",startGame);
 
 function aiPlays() {
-    for (var i = 0; i < level; i++) {
-        var rand = Math.floor(Math.random() * 4);
-        //console.log(buttons[rand]);
-        chosenColor = rand;
-        patternToPlay.push(buttons[chosenColor]);
-        console.log(patternToPlay);
+    aiTurn = true;
+    playersTurn = false;
+    do{
+        for (var i = 0; i < level; i++) {
+            var rand = Math.floor(Math.random() * 4);
+            //console.log(buttons[rand]);
+            chosenColor = rand;
+            patternToPlay.push(buttons[chosenColor]);
+            console.log(patternToPlay);
 
-    }
+        }
 
 
 
-    for (let i = 0; i < patternToPlay.length; i++) {
-        var str = "#" + patternToPlay[i];
+        for (let i = 0; i < patternToPlay.length; i++) {
+            var str = "#" + patternToPlay[i];
 
-        anim(str, i);
+            anim(str, i);
 
-    }
+        }
+        aiTurn =false;
+        playersTurn = true;
+    
+    } while(aiTurn)
 }
 
 
@@ -40,10 +49,10 @@ function anim(str, i) {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
 
 
-    }, 2000 * i);
+    }, 100 * i);
 }
 
-function playerAnim(str){
+function playerAnim(str) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
 
@@ -51,89 +60,86 @@ function playerAnim(str){
     }, 100);
 }
 
-function greenBtnPressed(){
+function greenBtnPressed() {
     var str = "#green";
     playerAnim(str);
     playersPattern.push("green");
-    if(playersPattern.length < patternToPlay.length){
-        console.log("carry on");
-    }else if (playersPattern.length > patternToPlay.length){
-        console.log("stop game");
-    }else if(playersPattern.length==patternToPlay.length){
-        checkAiVsPlayer();
-    }
+  
 }
 
-function redBtnPressed(){
+function redBtnPressed() {
     var str = "#red";
     playerAnim(str);
     playersPattern.push("red");
-     if(playersPattern.length < patternToPlay.length){
-        console.log("carry on");
-    }else if (playersPattern.length > patternToPlay.length){
-        console.log("stop game");
-    }else if(playersPattern.length==patternToPlay.length){
-        checkAiVsPlayer();
-    }
+    checkArrays();
 
 }
 
-function yellowBtnPressed(){
+function yellowBtnPressed() {
     var str = "#yellow";
     playerAnim(str);
     playersPattern.push("yellow");
-     if(playersPattern.length < patternToPlay.length){
-        console.log("carry on");
-    }else if (playersPattern.length > patternToPlay.length){
-        console.log("stop game");
-    }else if(playersPattern.length==patternToPlay.length){
-        checkAiVsPlayer();
-    }
+    checkArrays();
+   
 }
 
-function blueBtnPressed(){
+function blueBtnPressed() {
     var str = "#blue";
     playerAnim(str);
     playersPattern.push("blue");
-    if(playersPattern.length < patternToPlay.length){
+    checkArrays();
+   
+
+}
+
+function checkArrays(){
+      if (playersPattern.length < patternToPlay.length) {
         console.log("carry on");
-    }else if (playersPattern.length > patternToPlay.length){
+    } else if (playersPattern.length > patternToPlay.length) {
         console.log("stop game");
-    }else if(playersPattern.length==patternToPlay.length){
+    } else if (playersPattern.length == patternToPlay.length) {
         checkAiVsPlayer();
     }
-    
 }
 
-function checkAiVsPlayer(){
-    if(JSON.stringify(patternToPlay)===JSON.stringify(playersPattern)){
+function checkAiVsPlayer() {
+    if (JSON.stringify(patternToPlay) === JSON.stringify(playersPattern)) {
         level++;
         playerScore++;
+        aiTurn = true;
         alert("WINNER WINNER CHICKEN DINNER" + playerScore);
         updatePlayerScore(playerScore);
-    }else if(JSON.stringify(patternToPlay)!=JSON.stringify(playersPattern)){
+    } else if (JSON.stringify(patternToPlay) != JSON.stringify(playersPattern)) {
+        gameOver = true;
         alert("YOU LOST HA HA!");
     }
+
+}
+
+function updatePlayerScore(playerScore) {
+    var score = playerScore.toString();
+    console.log(score);
+    document.getElementById('player').textContent = score;
+
+}
+
+function playersTurn() {
+   
+
+}
+
+function startGame(){
     
-}
-
-function updatePlayerScore(playerScore){
-   var score = playerScore.toString();
-   console.log(score);
-   document.getElementById('player').textContent = score;
 
 }
 
 
-function gameLoop(){
-    while(gameOver){
-        
 
-    }
-}
 
 
 
 anim();
-aiPlays();
 
+
+
+    

@@ -3,6 +3,7 @@ var patternToPlay = [];
 var playersPattern = [];
 var level = 4;
 var playerScore = 0;
+var lives = 3;
 var chosenColor;
 
 var isPlayersTurn = false;
@@ -16,10 +17,9 @@ var blueBtnPressed = document.getElementById("blue").addEventListener("click", b
 var playButton = document.getElementById("play").addEventListener("click",aiPlays);
 
 function aiPlays() {
-    aiTurn = true;
-    playersTurn = false;
+    
     patternToPlay = [];
-     
+     aiTurn =true;
     do{
        playersPattern = [];
         for (var i = 0; i < level; i++) {
@@ -68,7 +68,7 @@ function greenBtnPressed() {
     var str = "#green";
     playerAnim(str);
     playersPattern.push("green");
-  
+    checkArrays();
 }
 
 function redBtnPressed() {
@@ -114,21 +114,24 @@ function checkAiVsPlayer() {
         aiTurn = true;
         console.log("WINNER WINNER CHICKEN DINNER" + playerScore +level + patternToPlay.length);
         
-        updatePlayerScore(playerScore);
+        updatePlayerScore(playerScore,lives);
         aiPlays();
     } else if (JSON.stringify(patternToPlay) != JSON.stringify(playersPattern)) {
         gameOver = true;
+        --lives;
+        updatePlayerScore(playerScore,lives);
         alert("YOU LOST HA HA!");
     }
    
 
 }
 
-function updatePlayerScore(playerScore) {
+function updatePlayerScore(playerScore,lives) {
     var score = playerScore.toString();
-    console.log(score);
+    var lives = lives.toString();
+    console.log(score,lives);
     document.getElementById('player').textContent = score;
-
+    document.getElementById('lives').textContent = score;
 }
 
 

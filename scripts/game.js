@@ -119,6 +119,7 @@ function checkAiVsPlayer() {
     } else if (JSON.stringify(patternToPlay) != JSON.stringify(playersPattern)) {
         gameOver = true;
         --lives;
+     
         updatePlayerScore(playerScore,lives);
         alert("YOU LOST HA HA!");
     }
@@ -131,7 +132,7 @@ function updatePlayerScore(playerScore,lives) {
     var lives = lives.toString();
     console.log(score,lives);
     document.getElementById('player').textContent = score;
-    document.getElementById('lives').textContent = score;
+    document.getElementById('lives').textContent = lives;
 }
 
 

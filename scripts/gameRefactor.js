@@ -10,13 +10,12 @@ var isPlayersTurn = false;
 var aiTurn = true;
 var gameOver = false;
 
-/*var greenBtnPressed = document.getElementById("green").addEventListener("click", greenBtnPressed);
-var redBtnPressed = document.getElementById("red").addEventListener("click", redBtnPressed);
-var yellowBtnPressed = document.getElementById("yellow").addEventListener("click", yellowBtnPressed);
-var blueBtnPressed = document.getElementById("blue").addEventListener("click", blueBtnPressed);*/
+
 var playButton = document.getElementById("play").addEventListener("click",aiPlays);
 
  $('.mycontainer').on('click','.btns',btnPressed);
+
+ $('#reset').on('click',resetPressed);
 
  function btnPressed(){
     var str = $(this).attr('value');
@@ -24,6 +23,12 @@ var playButton = document.getElementById("play").addEventListener("click",aiPlay
     playerAnim(str);
     playersPattern.push(id);
     checkArrays();
+ }
+
+ function resetPressed(){
+     lives = 3;
+     level = 4;
+     
  }
   
   
@@ -37,20 +42,13 @@ function aiPlays() {
        playersPattern = [];
         for (var i = 0; i < level; i++) {
             var rand = Math.floor(Math.random() * 4);
-           
             chosenColor = rand;
             patternToPlay.push(buttons[chosenColor]);
-           
-
-        }
-         console.log(patternToPlay);
-
-
+           }
+            console.log(patternToPlay);
         for (let i = 0; i < patternToPlay.length; i++) {
             var str = "#" + patternToPlay[i];
-
             anim(str, i);
-
         }
         aiTurn =false;
         playersTurn = true;
@@ -64,50 +62,16 @@ function aiPlays() {
 function anim(str, i) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
-
-
     }, 1000 * i);
 }
 
 function playerAnim(str) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
-
-
     }, 100);
 }
 
-function greenBtnPressed() {
-    var str = "#green";
-    playerAnim(str);
-    playersPattern.push("green");
-    checkArrays();
-}
 
-function redBtnPressed() {
-    var str = "#red";
-    playerAnim(str);
-    playersPattern.push("red");
-    checkArrays();
-
-}
-
-function yellowBtnPressed() {
-    var str = "#yellow";
-    playerAnim(str);
-    playersPattern.push("yellow");
-    checkArrays();
-   
-}
-
-function blueBtnPressed() {
-    var str = "#blue";
-    playerAnim(str);
-    playersPattern.push("blue");
-    checkArrays();
-   
-
-}
 
 function checkArrays(){
       if (playersPattern.length < patternToPlay.length) {
@@ -126,15 +90,16 @@ function checkAiVsPlayer() {
         playerScore++;
         aiTurn = true;
         console.log("WINNER WINNER CHICKEN DINNER" + playerScore +level + patternToPlay.length);
-        
         updatePlayerScore(playerScore,lives);
         aiPlays();
     } else if (JSON.stringify(patternToPlay) != JSON.stringify(playersPattern)) {
         gameOver = true;
         --lives;
-     
+        if(lives >= 0){
         updatePlayerScore(playerScore,lives);
+        }else if(lives < 0){    
         alert("YOU LOST HA HA!");
+        }
     }
    
 
@@ -147,14 +112,3 @@ function updatePlayerScore(playerScore,lives) {
     document.getElementById('player').textContent = score;
     document.getElementById('lives').textContent = lives;
 }
-
-
-
-
-
-
-
-
-
-
-anim();

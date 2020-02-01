@@ -28,6 +28,9 @@ var playButton = document.getElementById("play").addEventListener("click",aiPlay
  function resetPressed(){
      lives = 3;
      level = 4;
+     score = 0;
+
+     updatePlayerScore(score,lives);
      
  }
   

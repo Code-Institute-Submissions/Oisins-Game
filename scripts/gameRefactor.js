@@ -1,4 +1,11 @@
 var buttons = ["green", "red", "yellow", "blue"];
+var sound1 = new Audio("simonSound1.mp3");
+var sound2 = new Audio("simonSound2.mp3");
+var sound3 = new Audio("simonSound3.mp3");
+var sound4 = new Audio("simonSound4.mp3");
+
+var sounds = [sound1,sound2,sound3,sound4];
+
 var patternToPlay = [];
 var playersPattern = [];
 var level = 4;
@@ -65,7 +72,17 @@ function aiPlays() {
 function anim(str, i) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
+        if(str ==="#green"){
+            sounds[0].play();
+        }else if(str === "#red"){
+            sounds[1].play();
+        }else if(str === "#blue"){
+            sounds[2].play();
+        }else if(str ==="#yellow"){
+            sounds[3].play();
+        }
     }, 1000 * i);
+    
 }
 
 function playerAnim(str) {

@@ -28,6 +28,15 @@ var playButton = document.getElementById("play").addEventListener("click",aiPlay
     var str = $(this).attr('value');
     var id = $(this).attr('id');
     playerAnim(str);
+    if(str ==="#green"){
+            sounds[0].play();
+        }else if(str === "#red"){
+            sounds[1].play();
+        }else if(str === "#blue"){
+            sounds[2].play();
+        }else if(str ==="#yellow"){
+            sounds[3].play();
+        }
     playersPattern.push(id);
     checkArrays();
  }
@@ -88,6 +97,7 @@ function anim(str, i) {
 function playerAnim(str) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
+       
     }, 100);
 }
 
@@ -132,3 +142,5 @@ function updatePlayerScore(playerScore,lives) {
     document.getElementById('player').textContent = score;
     document.getElementById('lives').textContent = lives;
 }
+
+

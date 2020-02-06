@@ -47,7 +47,6 @@ function resetPressed() {
     lives = 3;
     level = 2;
     score = 0;
-
     updatePlayerScore(score, lives, level);
 
 }
@@ -120,7 +119,7 @@ function checkAiVsPlayer() {
         }, 500);
 
         ++level;
-        playerScore = level * 10;
+        ++playerScore;
         updatePlayerScore(playerScore, lives, level);
         setTimeout(function () {
             aiPlays();

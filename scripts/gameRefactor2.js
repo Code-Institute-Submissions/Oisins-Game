@@ -1,12 +1,12 @@
 var buttons = ["green", "red", "yellow", "blue"];
-var sound1 = new Audio("simonSound1.mp3");
-var sound2 = new Audio("simonSound2.mp3");
-var sound3 = new Audio("simonSound3.mp3");
-var sound4 = new Audio("simonSound4.mp3");
-var lose = new Audio("lose.mp3");
-var wrong = new Audio("phaserDown3.ogg");
-var correct = new Audio("powerUp1.ogg");
-var sounds = [sound1,sound2,sound3,sound4];
+var sound1 = new Audio("assets/sounds/simonSound1.mp3");
+var sound2 = new Audio("assets/sounds/simonSound2.mp3");
+var sound3 = new Audio("assets/sounds/simonSound3.mp3");
+var sound4 = new Audio("assets/sounds/simonSound4.mp3");
+var lose = new Audio("assets/sounds/lose.mp3");
+var wrong = new Audio("assets/sounds/phaserDown3.ogg");
+var correct = new Audio("assets/sounds/powerUp1.ogg");
+var sounds = [sound1, sound2, sound3, sound4];
 
 var patternToPlay = [];
 var playersPattern = [];
@@ -20,62 +20,62 @@ var aiTurn = true;
 var gameOver = false;
 
 
-var playButton = document.getElementById("play").addEventListener("click",aiPlays);
+var playButton = document.getElementById("play").addEventListener("click", aiPlays);
 
- $('.mycontainer').on('click','.btns',btnPressed);
+$('.mycontainer').on('click', '.btns', btnPressed);
 
- $('#reset').on('click',resetPressed);
+$('#reset').on('click', resetPressed);
 
- function btnPressed(){
+function btnPressed() {
     var str = $(this).attr('value');
     var id = $(this).attr('id');
     playerAnim(str);
-    if(str ==="#green"){
-            sounds[0].play();
-        }else if(str === "#red"){
-            sounds[1].play();
-        }else if(str === "#blue"){
-            sounds[2].play();
-        }else if(str ==="#yellow"){
-            sounds[3].play();
-        }
+    if (str === "#green") {
+        sounds[0].play();
+    } else if (str === "#red") {
+        sounds[1].play();
+    } else if (str === "#blue") {
+        sounds[2].play();
+    } else if (str === "#yellow") {
+        sounds[3].play();
+    }
     playersPattern.push(id);
     checkArrays();
- }
+}
 
- function resetPressed(){
-     lives = 3;
-     level = 2;
-     score = 0;
+function resetPressed() {
+    lives = 3;
+    level = 2;
+    score = 0;
 
-     updatePlayerScore(score,lives,level);
-     
- }
-  
-  
+    updatePlayerScore(score, lives, level);
+
+}
+
+
 
 
 function aiPlays() {
-    
+
     patternToPlay = [];
-     aiTurn =true;
-    do{
-       playersPattern = [];
+    aiTurn = true;
+    do {
+        playersPattern = [];
         for (var i = 0; i < level; i++) {
             var rand = Math.floor(Math.random() * 4);
             chosenColor = rand;
             patternToPlay.push(buttons[chosenColor]);
-           }
-            console.log(patternToPlay);
+        }
+        console.log(patternToPlay);
         for (let i = 0; i < patternToPlay.length; i++) {
             var str = "#" + patternToPlay[i];
             anim(str, i);
         }
-        aiTurn =false;
+        aiTurn = false;
         playersTurn = true;
-    
-    } while(aiTurn)
-   
+
+    } while (aiTurn)
+
 }
 
 
@@ -83,30 +83,30 @@ function aiPlays() {
 function anim(str, i) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
-        if(str ==="#green"){
+        if (str === "#green") {
             sounds[0].play();
-        }else if(str === "#red"){
+        } else if (str === "#red") {
             sounds[1].play();
-        }else if(str === "#blue"){
+        } else if (str === "#blue") {
             sounds[2].play();
-        }else if(str ==="#yellow"){
+        } else if (str === "#yellow") {
             sounds[3].play();
         }
     }, 1000 * i);
-    
+
 }
 
 function playerAnim(str) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
-       
+
     }, 100);
 }
 
 
 
-function checkArrays(){
-      if (playersPattern.length < patternToPlay.length) {
+function checkArrays() {
+    if (playersPattern.length < patternToPlay.length) {
     } else if (playersPattern.length > patternToPlay.length) {
     } else if (playersPattern.length == patternToPlay.length) {
         checkAiVsPlayer();
@@ -115,50 +115,50 @@ function checkArrays(){
 
 function checkAiVsPlayer() {
     if (JSON.stringify(patternToPlay) === JSON.stringify(playersPattern)) {
-          setTimeout(function(){
-          correct.play(); 
+        setTimeout(function () {
+            correct.play();
         }, 500);
-        
+
         ++level;
         playerScore = level * 10;
-        updatePlayerScore(playerScore,lives,level);
-        setTimeout(function(){
+        updatePlayerScore(playerScore, lives, level);
+        setTimeout(function () {
             aiPlays();
         }, 3000);
-        
+
     } else if (JSON.stringify(patternToPlay) != JSON.stringify(playersPattern)) {
-         setTimeout(function(){
-           wrong.play(); 
+        setTimeout(function () {
+            wrong.play();
         }, 500);
-        
+
         --lives;
-        if(lives > 0){
-        updatePlayerScore(playerScore,lives,level);
-        }else if(lives <= 0){    
-        // update message telling player they have lost
-        updatePlayerScore(playerScore,lives,level);
-        lose.play();
-        document.getElementById("message").textContent = "You Lost";
-            setTimeout(function(){
-            resetPressed();
-            document.getElementById("message").textContent = "Press play to begin";
-        }, 10000);
+        if (lives > 0) {
+            updatePlayerScore(playerScore, lives, level);
+            setTimeout(function () {
+            aiPlays();
+        }, 2000);
+            
+        } else if (lives <= 0) {
+            // update message telling player they have lost
+            updatePlayerScore(playerScore, lives, level);
+            lose.play();
+            document.getElementById("message").textContent = "You Lost";
+            setTimeout(function () {
+                resetPressed();
+                document.getElementById("message").textContent = "Press play to begin";
+            }, 10000);
         }
     }
-   
+
 
 }
 
-function updatePlayerScore(playerScore,lives,level) {
+function updatePlayerScore(playerScore, lives, level) {
     var temp = level;
     --temp;
     temp = temp.toString();
-    
     var score = playerScore.toString();
     var lives = lives.toString();
-    
- 
-    console.log(score,lives);
     document.getElementById('player').textContent = score;
     document.getElementById('lives').textContent = lives;
     document.getElementById('level').textContent = temp;

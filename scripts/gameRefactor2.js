@@ -3,7 +3,7 @@ var sound1 = new Audio("simonSound1.mp3");
 var sound2 = new Audio("simonSound2.mp3");
 var sound3 = new Audio("simonSound3.mp3");
 var sound4 = new Audio("simonSound4.mp3");
-
+var lose = new Audio("lose.mp3");
 var sounds = [sound1,sound2,sound3,sound4];
 
 var patternToPlay = [];
@@ -132,6 +132,7 @@ function checkAiVsPlayer() {
         updatePlayerScore(playerScore,lives);
         }else if(lives <= 0){    
         // update message telling player they have lost
+        lose.play();
         document.getElementById("message").textContent = "You Lost";
             setTimeout(function(){
             resetPressed();

@@ -8,7 +8,7 @@ var sounds = [sound1,sound2,sound3,sound4];
 
 var patternToPlay = [];
 var playersPattern = [];
-var level = 4;
+var level = 2;
 var playerScore = 0;
 var lives = 3;
 var chosenColor;
@@ -43,7 +43,7 @@ var playButton = document.getElementById("play").addEventListener("click",aiPlay
 
  function resetPressed(){
      lives = 3;
-     level = 4;
+     level = 2;
      score = 0;
 
      updatePlayerScore(score,lives);
@@ -107,7 +107,7 @@ function checkArrays(){
       if (playersPattern.length < patternToPlay.length) {
         console.log("carry on");
     } else if (playersPattern.length > patternToPlay.length) {
-        alert("Too many")
+        
         console.log("stop game");
     } else if (playersPattern.length == patternToPlay.length) {
         checkAiVsPlayer();
@@ -120,7 +120,7 @@ function checkAiVsPlayer() {
         playerScore++;
         aiTurn = true;
         console.log("WINNER WINNER CHICKEN DINNER" + playerScore +level + patternToPlay.length);
-        updatePlayerScore(playerScore,lives);
+        updatePlayerScore(playerScore,lives,level);
         setTimeout(function(){
             aiPlays();
         }, 3000);
@@ -128,22 +128,28 @@ function checkAiVsPlayer() {
     } else if (JSON.stringify(patternToPlay) != JSON.stringify(playersPattern)) {
         gameOver = true;
         --lives;
-        if(lives >= 0){
+        if(lives > 0){
         updatePlayerScore(playerScore,lives);
-        }else if(lives < 0){    
-        alert("YOU LOST HA HA!");
+        }else if(lives <= 0){    
+        // update message telling player they have lost
+        document.getElementById("message").textContent = "You Lost";
+            setTimeout(function(){
+            resetPressed();
+            document.getElementById("message").textContent = "Press play to begin";
+        }, 10000);
         }
     }
    
 
 }
 
-function updatePlayerScore(playerScore,lives) {
+function updatePlayerScore(playerScore,lives,level) {
     var score = playerScore.toString();
     var lives = lives.toString();
     console.log(score,lives);
     document.getElementById('player').textContent = score;
     document.getElementById('lives').textContent = lives;
+    document.getElementById('level').textContent = level;
 }
 
 

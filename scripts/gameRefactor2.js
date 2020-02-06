@@ -46,7 +46,7 @@ var playButton = document.getElementById("play").addEventListener("click",aiPlay
      level = 2;
      score = 0;
 
-     updatePlayerScore(score,lives);
+     updatePlayerScore(score,lives,level);
      
  }
   
@@ -129,9 +129,10 @@ function checkAiVsPlayer() {
         gameOver = true;
         --lives;
         if(lives > 0){
-        updatePlayerScore(playerScore,lives);
+        updatePlayerScore(playerScore,lives,level);
         }else if(lives <= 0){    
         // update message telling player they have lost
+        updatePlayerScore(playerScore,lives,level);
         lose.play();
         document.getElementById("message").textContent = "You Lost";
             setTimeout(function(){
@@ -145,12 +146,15 @@ function checkAiVsPlayer() {
 }
 
 function updatePlayerScore(playerScore,lives,level) {
+    var x = --level;
+    
     var score = playerScore.toString();
     var lives = lives.toString();
+    var z = x.toString();
     console.log(score,lives);
     document.getElementById('player').textContent = score;
     document.getElementById('lives').textContent = lives;
-    document.getElementById('level').textContent = level;
+    document.getElementById('level').textContent = z;
 }
 
 

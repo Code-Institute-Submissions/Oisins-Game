@@ -4,6 +4,8 @@ var sound2 = new Audio("simonSound2.mp3");
 var sound3 = new Audio("simonSound3.mp3");
 var sound4 = new Audio("simonSound4.mp3");
 var lose = new Audio("lose.mp3");
+var wrong = new Audio("phaserDown3.ogg");
+var correct = new Audio("powerUp1.ogg");
 var sounds = [sound1,sound2,sound3,sound4];
 
 var patternToPlay = [];
@@ -105,10 +107,7 @@ function playerAnim(str) {
 
 function checkArrays(){
       if (playersPattern.length < patternToPlay.length) {
-        console.log("carry on");
     } else if (playersPattern.length > patternToPlay.length) {
-        
-        console.log("stop game");
     } else if (playersPattern.length == patternToPlay.length) {
         checkAiVsPlayer();
     }
@@ -116,17 +115,22 @@ function checkArrays(){
 
 function checkAiVsPlayer() {
     if (JSON.stringify(patternToPlay) === JSON.stringify(playersPattern)) {
-        level++;
-        playerScore++;
-        aiTurn = true;
-        console.log("WINNER WINNER CHICKEN DINNER" + playerScore +level + patternToPlay.length);
+          setTimeout(function(){
+          correct.play(); 
+        }, 500);
+        
+        ++level;
+        playerScore = level * 10;
         updatePlayerScore(playerScore,lives,level);
         setTimeout(function(){
             aiPlays();
         }, 3000);
         
     } else if (JSON.stringify(patternToPlay) != JSON.stringify(playersPattern)) {
-        gameOver = true;
+         setTimeout(function(){
+           wrong.play(); 
+        }, 500);
+        
         --lives;
         if(lives > 0){
         updatePlayerScore(playerScore,lives,level);
@@ -146,15 +150,18 @@ function checkAiVsPlayer() {
 }
 
 function updatePlayerScore(playerScore,lives,level) {
-    var x = --level;
+    var temp = level;
+    --temp;
+    temp = temp.toString();
     
     var score = playerScore.toString();
     var lives = lives.toString();
-    var z = x.toString();
+    
+ 
     console.log(score,lives);
     document.getElementById('player').textContent = score;
     document.getElementById('lives').textContent = lives;
-    document.getElementById('level').textContent = z;
+    document.getElementById('level').textContent = temp;
 }
 
 

@@ -8,51 +8,8 @@ body {
 	height: 100%;
 	text-shadow: 2px 2px 4px #b5ecc3;
 }
-a.navbar-brand{
-    margin-left: 100px;
-}
-/* THE CODE BELOW IS FROM W3SCHOOLS */
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    a.navbar-brand{
-        margin-left: 100px;
-    }
-}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    a.navbar-brand{
-        margin-left: 100px;
-    }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    a.navbar-brand{
-        margin-left: 300px;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-    a.navbar-brand{
-        margin-left: 450px;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    a.navbar-brand{
-        margin-left: 650px;
-    }
-}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1440px) {
-    a.navbar-brand{
-        margin-left: 820px;
-    }
-}
 .btns {
 	display: inline-block;
 	height: 100%;
@@ -83,8 +40,9 @@ a.navbar-brand{
 hr{
     width: 25%;
     border: 2px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#play {
+#play,#reset {
 	width: 120px;
 	height: 50px;
 	background-color: #fe9801;
@@ -92,14 +50,7 @@ hr{
 	border-radius: 5px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#reset {
-	width: 120px;
-	height: 50px;
-	background-color: #fe9801;
-	font-size: 20px;
-	border-radius: 5px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+
 #bottomRow {
 	margin-top: 15px;
 }

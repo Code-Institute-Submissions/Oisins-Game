@@ -25,6 +25,8 @@ var playButton = document.getElementById("play").addEventListener("click", aiPla
 $(".mycontainer").on("click", ".btns", btnPressed);
 
 $("#reset").on("click", resetPressed);
+
+
 // when button pressed by player the animation/sound play and players choice 
 //added to their array and then checked against AI's selection
 function btnPressed() {
@@ -163,4 +165,7 @@ function updatePlayerScore(playerScore, lives, level) {
     document.getElementById("level").textContent = temp;
 }
 
+function showModal(){
+    $('#myModal').modal('show');
+}
 

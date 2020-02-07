@@ -47,6 +47,12 @@ a.navbar-brand{
         margin-left: 650px;
     }
 }
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1440px) {
+    a.navbar-brand{
+        margin-left: 820px;
+    }
+}
 .btns {
 	display: inline-block;
 	height: 100%;
@@ -73,6 +79,10 @@ a.navbar-brand{
 }
 #score-board {
 	margin: 30px 0 30px 0;
+}
+hr{
+    width: 25%;
+    border: 2px solid black;
 }
 #play {
 	width: 120px;

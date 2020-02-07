@@ -19,16 +19,17 @@ var isPlayersTurn = false;
 var aiTurn = true;
 var gameOver = false;
 
-
+//listeners 
 var playButton = document.getElementById("play").addEventListener("click", aiPlays);
 
-$('.mycontainer').on('click', '.btns', btnPressed);
+$(".mycontainer").on("click", ".btns", btnPressed);
 
-$('#reset').on('click', resetPressed);
-
+$("#reset").on("click", resetPressed);
+// when button pressed by player the animation/sound play and players choice 
+//added to their array and then checked against AI's selection
 function btnPressed() {
-    var str = $(this).attr('value');
-    var id = $(this).attr('id');
+    var str = $(this).attr("value");
+    var id = $(this).attr("id");
     playerAnim(str);
     if (str === "#green") {
         sounds[0].play();
@@ -42,7 +43,7 @@ function btnPressed() {
     playersPattern.push(id);
     checkArrays();
 }
-
+// reset button 
 function resetPressed() {
     lives = 3;
     level = 2;
@@ -53,18 +54,17 @@ function resetPressed() {
 
 
 
-
+// Generate an array of colors to play and play them
 function aiPlays() {
-
     patternToPlay = [];
     aiTurn = true;
     do {
         playersPattern = [];
-        for (var i = 0; i < level; i++) {
+        for (let i = 0; i < level; i++) {
             var rand = Math.floor(Math.random() * 4);
             chosenColor = rand;
             patternToPlay.push(buttons[chosenColor]);
-        }
+        }// LEAVING THIS CONSOLE LOG JUST SO IT CAN BE USED BY ASSESSOR OF PROJECT
         console.log(patternToPlay);
         for (let i = 0; i < patternToPlay.length; i++) {
             var str = "#" + patternToPlay[i];
@@ -78,7 +78,7 @@ function aiPlays() {
 }
 
 
-
+// AI's button animation along with sound
 function anim(str, i) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
@@ -94,7 +94,7 @@ function anim(str, i) {
     }, 1000 * i);
 
 }
-
+// Players button animation
 function playerAnim(str) {
     setTimeout(function () {
         $(str).fadeOut(50).fadeIn(50).fadeOut(50).fadeIn(50)
@@ -103,7 +103,7 @@ function playerAnim(str) {
 }
 
 
-
+// checks arrays and 
 function checkArrays() {
     if (playersPattern.length < patternToPlay.length) {
     } else if (playersPattern.length > patternToPlay.length) {
@@ -111,7 +111,7 @@ function checkArrays() {
         checkAiVsPlayer();
     }
 }
-
+// checks if player played the correct sequence
 function checkAiVsPlayer() {
     if (JSON.stringify(patternToPlay) === JSON.stringify(playersPattern)) {
         setTimeout(function () {
@@ -151,16 +151,16 @@ function checkAiVsPlayer() {
 
 
 }
-
+// changes the scoreboard
 function updatePlayerScore(playerScore, lives, level) {
     var temp = level;
     --temp;
     temp = temp.toString();
     var score = playerScore.toString();
     var lives = lives.toString();
-    document.getElementById('player').textContent = score;
-    document.getElementById('lives').textContent = lives;
-    document.getElementById('level').textContent = temp;
+    document.getElementById("player").textContent = score;
+    document.getElementById("lives").textContent = lives;
+    document.getElementById("level").textContent = temp;
 }
 
 

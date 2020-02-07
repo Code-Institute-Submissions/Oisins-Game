@@ -57,13 +57,7 @@ body {
 	display: inline-block;
 }
 
-.btns {
-	display: inline-block;
-	height: 100%;
-	width: 100%;
-	border: 10px solid darkgrey;
-	border-radius: 20%;
-}
+
 
 #red {
 	background-color: red;
@@ -83,6 +77,13 @@ body {
 #yellow {
 	background-color: yellow;
 	border-bottom-left-radius: 200px;
+}
+.btns {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	border: 10px solid darkgrey;
+	border-radius: 20%;
 }
 
 #controls {

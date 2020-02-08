@@ -31,6 +31,17 @@ give feedback to the player as to how they are progressing. The sound effects ad
 
 Overall these elements together provide an interactive experience that meets the user requirements.
 
+# Wireframing 
+
+No wireframe was needed for such a design as the design reflected the actual electonic game.
+
+# Features for future implementation
+
+- Hi score system that will take the players initials ie DPC to recreate the arcade experience (maybe via another modal?)
+- Two player mode 
+- Allow the user to choose Expert level whereby they can play by sound only and no animations of buttons
+
+
 
 
 

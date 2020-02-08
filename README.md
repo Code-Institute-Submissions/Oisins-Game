@@ -45,7 +45,7 @@ No wireframe was needed for such a design as the design reflected the actual ele
 
 The testing phase of the project consisted of incremental manual unit testing firstly on the live preview then on the hosted Github pages. The testing revealed that although the game works fine on the smaller screens it is ultimately a better user experience on larger
 screens. This process of implementing and testing helped to keep the project moving forward but uncertainty over the quality of code.
-
+NOTE: one console log was deliberately left in the code so that the assessor would be able to see the game selections and use them for their own validation process.
 Overall the game meets the requirements of being highly interactive, fun, and challenging.
 
 # Issues 
@@ -53,6 +53,25 @@ As can be seen through the commit history the code was refactored to reduce the 
 Whilst no wireframe was required for the UI, techniques could have been employed such as pseudocode, in the early stages, to improve the
 code. Employing these early and sticking to them would have made the process easier and therefore would have made it possible to implement those features not yet included.
 
+# Personal Takeaway
+
+Overall the project has been a great lesson in how to put together an interactive web app. Whilst it is fully functioning the code can
+be improved upon by undertaking a more systematic approach to both the program flow and structure and these shortcomings will be rectified in future projects and possibly a refactor of this projects code from the ground up.
+
+# Deployment
+
+The project was deployed through the Github pages using the master branch. Commits to the master branch updated the project straight 
+away, thus allowing the project to be tested on the preview and the live site.The live site is hosted [here](https://davidcaffrey.github.io/Oisins-Game/) and the site can be downloaded locally from [here](https://github.com/DavidCaffrey/Oisins-Game) using Git clone or downloading the zip.
+
+# Media 
+- fonts from Google fonts
+- sounds from Amazon AWS
+- sounds from Kenney Assets itch.io
+
+# Acknowledgements
+
+- Ralph Baer and Howard Morrison 
+This app is for educational purposes only as part of a learning program undertaken at CodeInstitute.
 
 
 

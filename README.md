@@ -41,6 +41,18 @@ No wireframe was needed for such a design as the design reflected the actual ele
 - Two player mode 
 - Allow the user to choose Expert level whereby they can play by sound only and no animations of buttons
 
+# Testing 
+
+The testing phase of the project consisted of incremental manual unit testing firstly on the live preview then on the hosted Github pages. The testing revealed that although the game works fine on the smaller screens it is ultimately a better user experience on larger
+screens. This process of implementing and testing helped to keep the project moving forward but uncertainty over the quality of code.
+
+Overall the game meets the requirements of being highly interactive, fun, and challenging.
+
+# Issues 
+As can be seen through the commit history the code was refactored to reduce the repetion of code such as event-listeners. The code readability could be improved along with the logic flow, which are things that will be improved on over time and with hindsight.
+Whilst no wireframe was required for the UI, techniques could have been employed such as pseudocode, in the early stages, to improve the
+code. Employing these early and sticking to them would have made the process easier and therefore would have made it possible to implement those features not yet included.
+
 
 
 

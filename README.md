@@ -5,6 +5,7 @@ Interactive Frontend Development Project - Code Institute
 ### Disclaimer This game is not for commercial use and is soley for educational use as a code institute project.
 
 # Demo
+![Alt text](/assets/Simon.png?raw=true "Optional Title")
 This project is hosted on Github pages and the live version can be found [here](https://davidcaffrey.github.io/Oisins-Game/).
 
 # About the Game
